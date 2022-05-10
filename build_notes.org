@@ -34,6 +34,49 @@ RUN apt-get update -q && \                                                      
 #+end_src
 
 
+#+begin_src bash
+cmake \
+         -DCMAKE_C_COMPILER_LAUNCHER=ccache \
+         -DCMAKE_CXX_COMPILER_LAUNCHER=ccache \
+         -DCMAKE_BUILD_TYPE=Release \
+         -DCMAKE_INSTALL_PREFIX=/usr \
+         -DKICAD_SCRIPTING_PYTHON3=on \
+         -DKICAD_SCRIPTING_WXPYTHON_PHOENIX=on \
+         ../
+#+end_src
+
+
+Failure 
+#+begin_quote
+CMake Error at /usr/share/cmake-3.13/Modules/FindBoost.cmake:2100 (message):
+  Unable to find the requested Boost libraries.
+
+  Boost version: 1.67.0
+
+  Boost include path: /usr/include
+
+  Detected version of Boost is too old.  Requested version was 1.71 (or
+  newer).
+Call Stack (most recent call first):
+  CMakeLists.txt:739 (find_package)
+
+
+-- The following HarfBuzz libraries were not found:
+--  HarfBuzz (required)
+CMake Error at /usr/share/cmake-3.13/Modules/FindPackageHandleStandardArgs.cmake:137 (message):
+  Could NOT find HarfBuzz (missing: HarfBuzz_INCLUDE_DIR HarfBuzz_LIBRARY
+  _HarfBuzz_REQUIRED_LIBS_FOUND)
+Call Stack (most recent call first):
+  /usr/share/cmake-3.13/Modules/FindPackageHandleStandardArgs.cmake:378 (_FPHSA_FAILURE_MESSAGE)
+  CMakeModules/FindHarfBuzz.cmake:153 (find_package_handle_standard_args)
+  CMakeLists.txt:752 (find_package)
+#+end_quote
+
 ** Version 2
+
+
+Needs to rely on a more updated ubuntu distribution
+
+
 
 
